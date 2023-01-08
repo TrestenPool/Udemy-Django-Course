@@ -57,9 +57,16 @@ ROOT_URLCONF = 'btre.urls'
 # Tells django where to look for templates
 TEMPLATES = [
     {
+        # What template engine we are using
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        
+        # the directory for the templates
+        'DIRS': [
+          str(Path(BASE_DIR, 'templates')),
+        ],
         'APP_DIRS': True,
+        
+        # options for the templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -73,7 +80,6 @@ TEMPLATES = [
 
 # path to the wsgi object
 WSGI_APPLICATION = 'btre.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -123,7 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # path to static files for the client
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = str(Path(BASE_DIR, 'static'))
+STATICFILES_DIRS = [
+  str(Path(BASE_DIR, 'btre/static'))
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
