@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 '''
   - The path should have a trailing /
   - Tells where django what to do when a user goes to that url
 '''
 urlpatterns = [
-
-    # include the urls that are in pages.urls file
     path('', include('pages.urls')),
-
+    path('listings/', include('listings.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

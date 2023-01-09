@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # apps that we have created
     'pages.apps.PagesConfig',
+    'listings.apps.ListingsConfig',
+    'realtors.apps.RealtorsConfig',
 ]
 
 # Pre-installed middleware that come preinstalled with django
@@ -87,8 +90,12 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 # Setup of the database url
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'btredb', 
+        'USER': 'tpool', 
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
 }
 
@@ -139,3 +146,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# All uploaded files will go to /uploads
+MEDIA_ROOT = str(Path(BASE_DIR, 'media'))
+MEDIA_URL = '/media/'
