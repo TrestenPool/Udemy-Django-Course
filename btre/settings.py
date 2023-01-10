@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     
     # apps that we have created
     'pages.apps.PagesConfig',
@@ -147,6 +148,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# All uploaded files will go to /uploads
+# Full path from the base directory to the media folder
+# more for storing the media
 MEDIA_ROOT = str(Path(BASE_DIR, 'media'))
-MEDIA_URL = '/media/'
+
+# The base from the public url
+# more for fetching the media
+MEDIA_URL = 'media/'
