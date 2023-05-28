@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +51,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 # Pre-installed middleware that come preinstalled with django
@@ -61,16 +72,17 @@ ROOT_URLCONF = 'btre.urls'
 # Tells django where to look for templates
 TEMPLATES = [
     {
-        # What template engine we are using
+        # Tells django we are using the DTL Django templating language engine for our templates
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         
         # the directory for the templates
         'DIRS': [
           str(Path(BASE_DIR, 'templates')),
         ],
+        #  tells whether the engine should look for templates inside installed applications. Each backend defines a conventional name for the subdirectory inside applications where its templates should be stored.
         'APP_DIRS': True,
         
-        # options for the templates
+        # options for the templates, not sure what all of these do yet
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -155,3 +167,15 @@ MEDIA_ROOT = str(Path(BASE_DIR, 'media'))
 # The base from the public url
 # more for fetching the media
 MEDIA_URL = 'media/'
+
+MESSAGE_TAGS = {
+  messages.ERROR: 'danger'
+}
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'trestenpool@gmail.com'
+EMAIL_HOST_PASSWORD = 'adehjnrtdflunhwq'
+EMAIL_USE_TLS=True

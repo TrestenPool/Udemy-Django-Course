@@ -44,16 +44,52 @@
           </li>
         </ul>
 
+        <!-- Register and Login buttons -->
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'index' %}">
-              <i class="fas fa-user-plus"></i> register</a>
-          </li>
 
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'index' %}">
-              <i class="fas fa-sign-in-alt"></i>Login</a>
-          </li>
+          <!-- Check if the user is logged in -->
+          {% if user.is_authenticated %}
+            <!-- Logout button -->
+            <li class="nav-item mr-3">
+              <a href="{% url 'logout' %}" class="nav-link">
+                <i class="fas fa-sign-out-alt"> Logout</i>
+              </a>
+            </li>
+
+            <!-- Dashboard button -->
+            <li class="nav-item mr-3">
+              <a href="{% url 'dashboard' %}" class="nav-link">
+                <i class="fas fa-user-cog"> Dashboard</i>
+              </a>
+            </li>
+
+          <!-- The user is NOT logged in -->
+          {% else %}
+            <!-- Register button -->
+            <li
+              {% if 'register' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+            >
+              <a class="nav-link" href="{% url 'register' %}">
+                <i class="fas fa-user-plus"></i> register</a>
+            </li>
+
+            <!-- Login button -->
+            <li
+              {% if 'login' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+            >
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+          {% endif %}
+
         </ul>
 
       </div>

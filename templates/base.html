@@ -14,14 +14,20 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Lightbox -->
   <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
-  <title>BT Real Estate</title>
+  <!-- Dynamic title -->
+  <title>BT Real Estate {% block title %}{% endblock %} </title>
 </head>
 
 <body>
+
   <!-- Top Bar -->
   {% include 'partials/_topbar.html' %}
+
   <!-- NavBar -->
   {% include 'partials/_navbar.html' %}
+
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
 
   <!-- Main Content -->
   {% block content  %}
