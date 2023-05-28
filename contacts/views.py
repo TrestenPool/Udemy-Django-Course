@@ -7,7 +7,7 @@ from .models import Contact
 
 
 def contact(request):
-  # POST request
+  # POST request, saves the contact 
   if request.method == 'POST':
     
     # Get the variables from the post request body

@@ -4,9 +4,7 @@ from django.db import models
 
 
 class Contact(models.Model):
-  # name of the listing the inquiry is about
   listing = models.CharField(max_length=255)
-  # if of the listing the inquiry is about
   listing_id = models.IntegerField()
   
   # information aquired from the person who made the inquiry

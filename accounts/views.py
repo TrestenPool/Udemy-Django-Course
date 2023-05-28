@@ -3,9 +3,11 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
 
+from contacts.models import Contact
+
 
 ##################
-#### Login ####
+#### Login ######
 ##################
 def login(request):
 
@@ -103,4 +105,11 @@ def logout(request):
 #### Dashboard ####
 ##################
 def dashboard(request):
-  return render(request, 'accounts/dashboard.html')
+  # gets all of the contacts made by the user that is logged in
+  user_contacts = Contact.objects.order_by('contact_date').filter(user_id=request.user.id)
+
+  context = {
+    'contacts': user_contacts
+  }
+
+  return render(request, 'accounts/dashboard.html', context)
